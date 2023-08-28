@@ -5,21 +5,24 @@ Param (
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$installAllSoftware
 )
 
+$distro_file_name = "ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz"
+$wsl_init_script = "https://raw.githubusercontent.com/cherrmann89/ansible/dev/wsl-start.sh?token=GHSAT0AAAAAACF76PVJ6OXKAJJ3BXS3CFA6ZHIZL7A"
+
 # create staging directory if it does not exists
-if (-Not (Test-Path -Path .\staging)) { $dir = mkdir .\staging }
-
-curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2004
-
-Move-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
-Expand-Archive .\staging\$wslName.zip .\staging\$wslName
+if (-Not (Test-Path -Path .\staging\$wslName)) {
+    $dir = mkdir -p .\staging\$wslName
+}
 
 if (-Not (Test-Path -Path $wslInstallationPath)) {
-    mkdir $wslInstallationPath
+    $dir = mkdir -p $wslInstallationPath
 }
-wsl --import $wslName $wslInstallationPath .\staging\$wslName\install.tar.gz
 
-Remove-Item .\staging\$wslName.zip
-Remove-Item -r .\staging\$wslName\
+if (-Not (Test-Path -Path .\staging\$wslName\$distro_file_name)) {
+    # TODO: create timestamp based check
+    curl.exe -L -o .\staging\$wslName\$distro_file_name https://cloud-images.ubuntu.com/wsl/jammy/current/$distro_file_name
+}
+
+wsl --import $wslName $wslInstallationPath .\staging\$wslName\$distro_file_name
 
 # Update the system
 wsl -d $wslName -u root bash -ic "apt update; apt upgrade -y"
