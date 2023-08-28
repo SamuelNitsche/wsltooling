@@ -39,3 +39,5 @@ if ($installAllSoftware -ieq $true) {
     wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
     wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoWithPasswd.sh $username"
 }
+
+wsl -d $wslName -u $username bash -ic "curl -L $wsl_init_script | bash"
