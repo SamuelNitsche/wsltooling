@@ -2,7 +2,8 @@ Param (
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslName,
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$githubUsername
+[Parameter(Mandatory=$True)][ValidateNotNull()][string]$githubUsername,
+[Parameter(Mandatory=$True)][ValidateNotNull()][string]$githubTokenPath
 )
 
 $install_path = $env:userprofile + "/git/wsltooling"
@@ -15,6 +16,10 @@ Set-Location $install_path
 # create staging directory if it does not exists
 if (-Not (Test-Path -Path $distro_path)) {
     $dir = mkdir -p $distro_path
+}
+
+if (-Not (Test-Path -Path $wslInstallationPath)) {
+    $dir = mkdir -p $wslInstallationPath
 }
 
 if (-Not (Test-Path -Path $wslInstallationPath)) {
@@ -37,4 +42,4 @@ wsl -d $wslName -u root bash -ic ("./scripts/config/system/createUser.sh {0} ubu
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
 
-wsl -d $wslName -u $username bash -ic $wsl_init_script $githubUsername
+wsl -d $wslName -u $username bash -ic $wsl_init_script $githubUsername $githubTokenPath
