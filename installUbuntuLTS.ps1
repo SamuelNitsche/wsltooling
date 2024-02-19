@@ -6,7 +6,7 @@ Param (
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubFullName,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubEmail,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$windowsGitDir
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$windowsHomeDir
 )
 
 $install_path = $env:userprofile + "/git/wsltooling"
@@ -50,9 +50,9 @@ if (
     -or [string]::IsNullOrWhiteSpace($githubTokenPath) `
     -or [string]::IsNullOrWhiteSpace($githubFullName) `
     -or [string]::IsNullOrWhiteSpace($githubEmail) `
-    -or [string]::IsNullOrWhiteSpace($windowsGitDir)
+    -or [string]::IsNullOrWhiteSpace($windowsHomeDir)
 ) {
     wsl -d $wslName -u $username
 } else {
-    wsl -d $wslName -u $username bash -ic $wsl_init_script $githubUsername $githubTokenPath $githubFullName $githubEmail $windowsGitDir
+    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}' '{3}' '{4}'" -f $githubUsername, $githubTokenPath, $githubFullName, $githubEmail, $windowsHomeDir)
 }

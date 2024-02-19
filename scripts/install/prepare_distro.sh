@@ -6,7 +6,7 @@ github_username=$1
 github_token_path=$(echo "$2" | sed -e 's/\\/\//g' -e 's/^\(\w\):/\/mnt\/\L\1/')
 github_full_name="$3"
 github_email="$4"
-windows_git_dir="$5"
+windows_home_dir=$(echo "$5" | sed -e 's/\\/\//g' -e 's/^\(\w\):/\/mnt\/\L\1/')
 
 echo "Upgrade all packages"
 sudo apt update
@@ -17,7 +17,7 @@ mkdir -p ~/.config/github
 cp "$github_token_path" ~/.config/github/token
 
 echo "Copy ssh files from Windows host"
-cp -r /mnt/c/Users/c.herrmann/.ssh ~/
+cp -r "$windows_home_dir"/.ssh ~/
 chmod 700 ~/.ssh
 find ~/.ssh/ -type f -exec chmod 600 {} \;
 
@@ -40,4 +40,4 @@ ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/de
 ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,dev
 
 echo "Run setup for development environment"
-ansible-playbook -e "github_user=$github_username github_cli_authenticate_deviant_token_path=~/.config/github/token github_full_name=$github_full_name github_email=$github_email windows_git_dir=$windows_git_dir" wecg.dev_env.setup
+ansible-playbook -e "github_user=$github_username github_cli_authenticate_deviant_token_path=~/.config/github/token github_full_name=$github_full_name github_email=$github_email windows_git_dir=$windows_home_dir" wecg.dev_env.setup
