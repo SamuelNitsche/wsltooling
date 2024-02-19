@@ -1,9 +1,12 @@
 Param (
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslName,
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$githubUsername,
-[Parameter(Mandatory=$True)][ValidateNotNull()][string]$githubTokenPath
+    [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslName,
+    [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
+    [Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubUsername,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubFullName,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubEmail,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$windowsGitDir
 )
 
 $install_path = $env:userprofile + "/git/wsltooling"
@@ -42,4 +45,14 @@ wsl -d $wslName -u root bash -ic ("./scripts/config/system/createUser.sh {0} ubu
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
 
-wsl -d $wslName -u $username bash -ic $wsl_init_script $githubUsername $githubTokenPath
+if (
+    [string]::IsNullOrWhiteSpace($githubUsername) `
+    -or [string]::IsNullOrWhiteSpace($githubTokenPath) `
+    -or [string]::IsNullOrWhiteSpace($githubFullName) `
+    -or [string]::IsNullOrWhiteSpace($githubEmail) `
+    -or [string]::IsNullOrWhiteSpace($windowsGitDir)
+) {
+    wsl -d $wslName -u $username
+} else {
+    wsl -d $wslName -u $username bash -ic $wsl_init_script $githubUsername $githubTokenPath $githubFullName $githubEmail $windowsGitDir
+}
