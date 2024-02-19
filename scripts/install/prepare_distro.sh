@@ -10,7 +10,7 @@ windows_git_dir="$5"
 
 echo "Upgrade all packages"
 sudo apt update
-apt upgrade -y
+sudo apt upgrade -y
 
 echo "Copy github token"
 mkdir -p ~/.config/github
