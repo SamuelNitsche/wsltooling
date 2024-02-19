@@ -37,5 +37,8 @@ echo "Installing ansible collection wecg/dev_env"
 ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,dev
 ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/general,dev
 
+echo "Installing ansible dependencies for wecg/dev_env"
+ansible-galaxy role install geerlingguy.apache geerlingguy.apache-php-fpm geerlingguy.mysql geerlingguy.php geerlingguy.php-versions
+
 echo "Run setup for development environment"
 ansible-playbook -e "github_user=$github_username github_cli_authenticate_deviant_token_path=~/.config/github/token" wecg.dev_env.setup
