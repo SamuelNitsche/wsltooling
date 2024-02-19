@@ -3,11 +3,11 @@ Param (
     [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
     [Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubUsername,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$windowsHomeDir
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath
 )
 
-$install_path = $env:userprofile + "/git/wsltooling"
+$windows_home_dir = $env:userprofile
+$install_path = $windows_home_dir + "/git/wsltooling"
 $distro_path = "./staging/" + $wslName
 $distro_file_name = "ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz"
 $wsl_init_script = "./scripts/install/prepare_distro.sh"
@@ -46,9 +46,9 @@ wsl -t $wslName
 if (
     [string]::IsNullOrWhiteSpace($githubUsername) `
     -or [string]::IsNullOrWhiteSpace($githubTokenPath) `
-    -or [string]::IsNullOrWhiteSpace($windowsHomeDir)
+    -or [string]::IsNullOrWhiteSpace($windows_home_dir)
 ) {
     wsl -d $wslName -u $username
 } else {
-    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}'" -f $githubUsername, $githubTokenPath, $windowsHomeDir)
+    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}'" -f $githubUsername, $githubTokenPath, $windows_home_dir)
 }
