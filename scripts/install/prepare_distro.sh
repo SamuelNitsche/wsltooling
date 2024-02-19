@@ -37,7 +37,7 @@ echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/n
 
 echo "Installing ansible collection wecg/dev_env"
 ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,dev
-ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,dev
+ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/general,dev
 
 echo "Run setup for development environment"
 ansible-playbook -e "github_user=$github_username github_cli_authenticate_deviant_token_path=~/.config/github/token github_full_name=$github_full_name github_email=$github_email windows_git_dir=$windows_home_dir" wecg.dev_env.setup
