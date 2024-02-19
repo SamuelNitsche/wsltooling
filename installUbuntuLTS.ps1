@@ -4,8 +4,6 @@ Param (
     [Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubUsername,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubFullName,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubEmail,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$windowsHomeDir
 )
 
@@ -48,11 +46,9 @@ wsl -t $wslName
 if (
     [string]::IsNullOrWhiteSpace($githubUsername) `
     -or [string]::IsNullOrWhiteSpace($githubTokenPath) `
-    -or [string]::IsNullOrWhiteSpace($githubFullName) `
-    -or [string]::IsNullOrWhiteSpace($githubEmail) `
     -or [string]::IsNullOrWhiteSpace($windowsHomeDir)
 ) {
     wsl -d $wslName -u $username
 } else {
-    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}' '{3}' '{4}'" -f $githubUsername, $githubTokenPath, $githubFullName, $githubEmail, $windowsHomeDir)
+    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}'" -f $githubUsername, $githubTokenPath, $windowsHomeDir)
 }
