@@ -67,6 +67,4 @@ modifyWslConf () {
   sudo cp "${DIR_INSTALL_UTILS}"/../config/system/wsl.conf /etc/wsl.conf
   sudo echo "[user]" | tee -a /etc/wsl.conf > /dev/null
   sudo echo "default=${USERNAME}" | tee -a /etc/wsl.conf > /dev/null
-  sudo echo -e "\n[boot]" | tee -a /etc/wsl.conf > /dev/null
-  sudo echo "systemd=true" | tee -a /etc/wsl.conf > /dev/null
 }
