@@ -64,7 +64,9 @@ addSudoers () {
 
 modifyWslConf () {
   verifyUserName
-  sudo cp ${DIR_INSTALL_UTILS}/../config/system/wsl.conf /etc/wsl.conf
-  sudo echo "[user]" >> /etc/wsl.conf
-  sudo echo "default=${USERNAME}" >> /etc/wsl.conf
+  sudo cp "${DIR_INSTALL_UTILS}"/../config/system/wsl.conf /etc/wsl.conf
+  sudo echo "[user]" | tee -a /etc/wsl.conf > /dev/null
+  sudo echo "default=${USERNAME}" | tee -a /etc/wsl.conf > /dev/null
+  sudo echo -e "\n[boot]" | tee -a /etc/wsl.conf > /dev/null
+  sudo echo "systemd=true" | tee -a /etc/wsl.conf > /dev/null
 }
