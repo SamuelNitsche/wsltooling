@@ -3,7 +3,9 @@ Param (
     [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
     [Parameter(Mandatory=$True)][ValidateNotNull()][string]$username,
     [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubUsername,
-    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$githubTokenPath,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$gitFullName,
+    [Parameter(Mandatory=$True)][AllowEmptyString()][string]$gitEmail
 )
 
 $windows_home_dir = $env:userprofile
@@ -46,9 +48,11 @@ wsl -t $wslName
 if (
     [string]::IsNullOrWhiteSpace($githubUsername) `
     -or [string]::IsNullOrWhiteSpace($githubTokenPath) `
+    -or [string]::IsNullOrWhiteSpace($gitFullName) `
+    -or [string]::IsNullOrWhiteSpace($gitEmail) `
     -or [string]::IsNullOrWhiteSpace($windows_home_dir)
 ) {
     wsl -d $wslName -u $username
 } else {
-    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}'" -f $githubUsername, $githubTokenPath, $windows_home_dir)
+    wsl -d $wslName -u $username bash -ic ("$wsl_init_script '{0}' '{1}' '{2}' '{3}' '{4}'" -f $githubUsername, $githubTokenPath, $gitFullName, $gitEmail, $windows_home_dir)
 }
