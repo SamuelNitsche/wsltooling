@@ -16,7 +16,16 @@
 
 ## Nachbereitung:
 1. Konstante `APP_ROOT` in .configure.php im Shop- und Lager-Repository mit dem Pfad zum Projektverzeichnis befüllen, also _/home/<wsl-distro-username>/projects_
-2. Umgebungsvariable für Xdebug erstellen und laden
+2. Host-Eintrag anlegen (_C:\Windows\System32\drivers\etc\hosts_)
+
+    IP der WSL-Instanz mittels Powershell ermitteln:
+
+    `wsl -d dev-infra ip -o -4 -json addr list eth0 | ConvertFrom-Json | %{ $_.addr_info.local } | ?{ $_ }`
+
+    Host-Eintrag:
+
+    `<WSL-IP> web.dev.local`
+3. Umgebungsvariable für Xdebug erstellen und laden
    
    * `echo 'export PHP_IDE_CONFIG="serverName=WSL-dev-infra"' >> ~/.profile; source ~/.profile`
 
