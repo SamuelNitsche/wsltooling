@@ -4,7 +4,7 @@
    * Hyper-V
    * Windows Subsystem for Linux
 3. Powershell:
-   `wsl --update`
+   `wsl --update --pre-release`
 
 ## Start:
 1. Repo "wsltooling" in _C:\Users\<windows-username>\git_ klonen: https://github.com/cherrmann89/wsltooling
