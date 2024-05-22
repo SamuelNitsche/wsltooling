@@ -9,7 +9,7 @@
 ## Start:
 1. Repo "wsltooling" in _C:\Users\<windows-username>\git_ klonen: https://github.com/cherrmann89/wsltooling
 2. Verzeichnis _C:\Users\<windows-username>\wsl_ anlegen
-3. GitHub Token mit den Rechten _repo:all_, _read:org_ und _admin:public_key:all_ erzeugen und in _C:\Users\<windows-username>\wsl\.token_ speichern
+3. GitHub Token mit den Rechten _repo:all_, _read:org_ und _admin:public_key:all_ erzeugen und in _C:\Users\<windows-username>\wsl\\.token_ speichern
 4. Verknüpfung im Verzeichnis _C:\Users\<windows-username>\wsl_ anlegen:
    * `powershell.exe -NoExit -execution bypass "%HOMEPATH%\git\wsltooling\installUbuntuLTS.ps1 dev-infra %HOMEPATH%\wsl\dev-infra <wsl-distro-username> <git-username> C:\Users\<windows-username>\wsl\.token"`
 
