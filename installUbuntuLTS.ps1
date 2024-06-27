@@ -39,6 +39,9 @@ wsl --import $wslName $wslInstallationPath ("{0}\{1}" -f $distro_path, $distro_f
 # Update the system
 wsl -d $wslName -u root bash -ic "apt update; apt upgrade -y"
 
+# Copy boot script
+wsl -d dev-infra -u root bash -ic "cp ./scripts/config/system/boot.sh /usr/local/sbin/ && chmod u+x /usr/local/sbin/boot.sh"
+
 # create your user and add it to sudoers
 wsl -d $wslName -u root bash -ic ("./scripts/config/system/createUser.sh {0} ubuntu" -f $username)
 
