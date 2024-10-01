@@ -43,3 +43,9 @@
      Debug port: 9003,9000,9010
 4. PhpStan konfigurieren
    * Settings -> PhpStan
+
+## Neuerstellung der Distro
+1. Projekte auf ungepushte Änderungen überprüfen
+2. Distro mittels Powershell entfernen
+   `wsl -t dev-infra`
+3. Angelegte Verknüpfung im Verzeichnis _C:\Users\<windows-username>\wsl_ ausführen
