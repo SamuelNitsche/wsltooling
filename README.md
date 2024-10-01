@@ -48,5 +48,5 @@
 1. Projekte auf ungepushte Änderungen überprüfen
 2. Distro mittels Powershell entfernen
 
-   `wsl -t dev-infra`
+   `wsl --unregister dev-infra`
 4. Angelegte Verknüpfung im Verzeichnis _C:\Users\<windows-username>\wsl_ ausführen
