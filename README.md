@@ -27,25 +27,6 @@
 3. Umgebungsvariable für Xdebug erstellen und laden
    * `echo 'export PHP_IDE_CONFIG="serverName=WSL-dev-infra"' >> ~/.profile; source ~/.profile`
 
-## PHP-Versionen:
-### PHP 7.4 zusätzlich installieren
-1. Erforderliche PHP-Module installieren
-   * `sudo apt install php7.4 php7.4-fpm php7.4-mbstring php7.4-mysql php7.4-redis php7.4-intl php7.4-curl php7.4-xml php7.4-xdebug php7.4-gd`
-2. Xdebug konfigurieren
-   * `sudo cp /etc/php/8.2/mods-available/xdebug.ini /etc/php/7.4/mods-available/xdebug.ini`
-   * `ip=$(ip route show | grep -i default | awk '{ print $3 }'); sudo sed -i "s/xdebug\:\/\/nameserver/$ip/" 
-     /etc/php/7.4/mods-available/xdebug.ini`
-
-### Versionswechsel von 8.2 zu 7.4
-1. `sed -i 's/php8.2-fpm/php7.4-fpm/' /etc/apache2/sites-enabled/001-shop.conf /etc/apache2/sites-enabled/002-shop-ssl.conf`
-2. `sudo update-alternatives --set php $(which php7.4)`
-3. `sudo service apache2 restart`
-
-### Von 7.4 zu 8.2
-1. `sed -i 's/php7.4-fpm/php8.2-fpm/' /etc/apache2/sites-enabled/001-shop.conf /etc/apache2/sites-enabled/002-shop-ssl.conf`
-2. `sudo update-alternatives --set php $(which php8.2)`
-3. `sudo service apache2 restart`
-
 ## Konfiguration eines neuen Projekts in PhpStorm
 1. PHP-Interpreter:
    * Settings -> PHP -> CLI-Interpreter -> + -> "From Docker, Vagrant [...]"
