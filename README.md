@@ -33,6 +33,8 @@ Daher werden bei Ausführung der Verknüpfung die restlichen Parameter abgefragt
 2. Umgebungsvariable für Xdebug erstellen und laden. Innerhalb der dev-infra Bash:
    * `echo 'export PHP_IDE_CONFIG="serverName=WSL-dev-infra"' >> ~/.profile; source ~/.profile`
 
+3. PHPStorm durch Firewall zulassen: Das Menü "Apps über die Windows-Firewall kommunizieren lassen" -> "Einstellungen ändern" -> In der Liste PHPStorm suchen und den Haken bei Domäne und Privat setzen.
+
 ## Konfiguration eines neuen Projekts in PhpStorm
 1. PHP-Interpreter:
    * Settings -> PHP -> CLI-Interpreter -> + -> "From Docker, Vagrant [...]"
