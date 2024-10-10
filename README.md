@@ -17,9 +17,10 @@
 4. Verknüpfung im Verzeichnis _C:\Users\<windows-username>\wsl_ anlegen. Als Speicherort
 `powershell.exe -NoExit -execution bypass "%HOMEPATH%\git\wsltooling\installUbuntuLTS.ps1 dev-infra %HOMEPATH%\wsl\dev-infra <wsl-distro-username> <github-username> C:\Users\<windows-username>\wsl\.token"`
 angeben. Hierbei kann der `<wsl-distro-username>` frei gewählt werden, `<github-username>` muss dem Usernamen bei GitHub entsprechen und `<windows-username> dem Usernamen auf Windows. Im nächsten Schritt kann der Verknüpfungsname frei gewählt werden.
-5. Die gerade erstellte Verknüpfung per Doppelklick ausführen. Leider können nicht alle für das Skript benötigten Parameter direkt mit in der Verknüpfung angegeben werden, da es hier eine Längenbeschränkung gibt.
+5. Sicherstellen, dass das VPN aktiv ist.
+6. Die gerade erstellte Verknüpfung per Doppelklick ausführen. Leider können nicht alle für das Skript benötigten Parameter direkt mit in der Verknüpfung angegeben werden, da es hier eine Längenbeschränkung gibt.
 Daher werden bei Ausführung der Verknüpfung die restlichen Parameter abgefragt und diese müssen über die sich öffnende PowerShell eingegeben werden.
-6. Das ausgeführte Skript installiert nun eine aktuelle Ubuntu Version als WSL Distro und startet anschließend ein Ansible Playbook, um die Distro zu provisionieren.
+7. Das ausgeführte Skript installiert nun eine aktuelle Ubuntu Version als WSL Distro und startet anschließend ein Ansible Playbook, um die Distro zu provisionieren.
 
 ## Nachbereitung:
 1. Host-Einträge anlegen (_C:\Windows\System32\drivers\etc\hosts_)
