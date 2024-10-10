@@ -36,8 +36,8 @@ echo "Populate ansible hosts file"
 echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/null
 
 echo "Installing ansible collection wecg/dev_env"
-ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,main
-ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/general,main
+ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/dev_env,master
+ansible-galaxy collection install git@github.com:Elektroshop/ansible.git#wecg/general,master
 
 echo "Installing ansible dependencies for wecg/dev_env"
 ansible-galaxy role install geerlingguy.apache geerlingguy.apache-php-fpm geerlingguy.mysql geerlingguy.php geerlingguy.php-versions
