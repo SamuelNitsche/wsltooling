@@ -16,7 +16,7 @@
 3. GitHub Token mit den Rechten _repo:all_, _read:org_ und _admin:public_key:all_ erzeugen und in _C:\Users\<windows-username>\wsl\\.token_ speichern
 4. Verknüpfung im Verzeichnis _C:\Users\<windows-username>\wsl_ anlegen. Als Speicherort
 `powershell.exe -NoExit -execution bypass "%HOMEPATH%\git\wsltooling\installUbuntuLTS.ps1 dev-infra %HOMEPATH%\wsl\dev-infra <wsl-distro-username> <github-username> C:\Users\<windows-username>\wsl\.token"`
-angeben. Hierbei kann der `<wsl-distro-username>` frei gewählt werden, `<github-username>` muss dem Usernamen bei GitHub entsprechen und `<windows-username> dem Usernamen auf Windows. Im nächsten Schritt kann der Verknüpfungsname frei gewählt werden.
+angeben. Hierbei kann der `<wsl-distro-username>` frei gewählt werden, `<github-username>` muss dem Usernamen bei GitHub entsprechen und `<windows-username>` dem Usernamen auf Windows. Im nächsten Schritt kann der Verknüpfungsname frei gewählt werden.
 5. Sicherstellen, dass das VPN aktiv ist.
 6. Die gerade erstellte Verknüpfung per Doppelklick ausführen. Leider können nicht alle für das Skript benötigten Parameter direkt mit in der Verknüpfung angegeben werden, da es hier eine Längenbeschränkung gibt.
 Daher werden bei Ausführung der Verknüpfung die restlichen Parameter abgefragt und diese müssen über die sich öffnende PowerShell eingegeben werden.
