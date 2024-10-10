@@ -3,6 +3,7 @@
 2. Folgende Windows-Features aktivieren und anschließend neu starten:
    * Hyper-V
    * Windows Subsystem for Linux
+   * VM-Plattform
 3. Powershell:
    `wsl --update`
 4. Git auf Windows installieren. Dieses wird nun nur noch benötigt, um die nachfolgende Einrichtung für WSL durchzuführen. Dabei wird dann git auch innerhalb von WSL installiert. Für die spätere Entwicklung kann dann dieses Binary verwendet werden.
