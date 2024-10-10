@@ -21,15 +21,17 @@ Daher werden bei Ausführung der Verknüpfung die restlichen Parameter abgefragt
 6. Das ausgeführte Skript installiert nun eine aktuelle Ubuntu Version als WSL Distro und startet anschließend ein Ansible Playbook, um die Distro zu provisionieren.
 
 ## Nachbereitung:
-1. Host-Eintrag anlegen (_C:\Windows\System32\drivers\etc\hosts_)
+1. Host-Einträge anlegen (_C:\Windows\System32\drivers\etc\hosts_)
 
     IP der WSL-Instanz mittels Powershell ermitteln:
 
     `wsl -d dev-infra ip -o -4 -json addr list eth0 | ConvertFrom-Json | %{ $_.addr_info.local } | ?{ $_ }`
 
-    Host-Eintrag:
+    Host-Einträge:
 
     `<WSL-IP> web.dev.local`
+
+   `<WSL-IP> lvs.dev.local`
 2. Umgebungsvariable für Xdebug erstellen und laden. Innerhalb der dev-infra Bash:
    * `echo 'export PHP_IDE_CONFIG="serverName=WSL-dev-infra"' >> ~/.profile; source ~/.profile`
 
