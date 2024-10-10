@@ -54,6 +54,14 @@ Daher werden bei Ausführung der Verknüpfung die restlichen Parameter abgefragt
      Debug port: 9003,9000,9010
 4. PhpStan konfigurieren
    * Settings -> PhpStan
+5. Composer konfigurieren
+   * Settings -> PHP -> Composer: Unter _Path to composer.json_ den Pfad auswählen (z.B. im shop Repo _\\\\wsl.localhost\dev-infra\home\<wsl-username>\projects\shop\composer.json_)
+     und unter _Execution_ _Remote Interpreter_ auswählen. Als _CLI Interpreter_ den unter Punkt 1. erstellten CLI Interpreter auswählen. _Path mappings_ und _Executable_ sollten direkt gesetzt sein.
+   * Anschließend kann die composer Integration über PHPStorm benutzt werden, z.B. wenn die composer.json geöffnet ist, kann man auf install klicken, um die Abhängigkeiten zu installieren.
+6. Node konfigurieren
+   * Settings -> Languages & Frameworks -> Node.js: Hinter _Node Interpreter_ auf die 3 Punkte klicken, dann mit dem _+_ einen neuen Interpreter hinzufügen _Add WSL_. Als _Linux distribution_ _dev-infra_ auswählen. Der Pfad zum Executable sollte dann direkt ausgefüllt werden.
+   * Der Pfad zum npm executable sollte dann auch direkt ausgefüllt sein.
+   * Anschließend kann die npm Integration über PHPStorm benutzt werden, z.B. wenn die package.json geöffnet ist, erscheint ein Pop mit `npm install` oder man kann direkt einzelne Befehle in der package.json anklicken und somit laufen lassen.
 
 ## Neuerstellung der Distro
 1. Projekte auf ungepushte Änderungen überprüfen
