@@ -22,8 +22,7 @@ chmod 700 ~/.ssh
 find ~/.ssh/ -type f -exec chmod 600 {} \;
 
 echo "Installing ansible"
-sudo add-apt-repository -y ppa:ansible/ansible
-sudo apt update
+sudo add-apt-repository -y -u ppa:ansible/ansible
 sudo apt install -y ansible
 
 echo "Populate ansible hosts file"
