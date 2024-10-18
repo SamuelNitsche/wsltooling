@@ -21,11 +21,6 @@ cp -r "$windows_home_dir"/.ssh ~/
 chmod 700 ~/.ssh
 find ~/.ssh/ -type f -exec chmod 600 {} \;
 
-echo "Installing git"
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt update
-sudo apt install -y git
-
 echo "Installing ansible"
 sudo add-apt-repository -y ppa:ansible/ansible
 sudo apt update
