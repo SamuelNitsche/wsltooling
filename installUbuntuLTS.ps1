@@ -11,7 +11,7 @@ Param (
 $windows_home_dir = $env:userprofile
 $install_path = $windows_home_dir + "/git/wsltooling"
 $distro_path = "./staging/" + $wslName
-$distro_file_name = "ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz"
+$distro_file_name = "ubuntu-jammy-wsl-amd64-ubuntu.rootfs.tar.gz"
 $wsl_init_script = "./scripts/install/prepare_distro.sh"
 
 Set-Location $install_path
